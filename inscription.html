@@ -1,0 +1,2592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="pageTitle">Inscription - BCM Finance Group</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
+    color:#222;
+    overflow-x:hidden;
+    width:100%;
+    margin:0;
+}
+
+header{
+background:#0b76c6;
+padding:30px 20px;
+color:#fff;
+text-align:center;
+}
+
+.header-flex{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+}
+
+.logo-bcm{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    animation:float 5s ease-in-out infinite;
+    margin-right:10px;
+}
+
+.logo-emoji{
+    font-size:70px;
+    line-height:1;
+}
+
+.logo-text{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:42px;
+    font-weight:900;
+    color:#000;
+    line-height:0.9;
+    letter-spacing:1px;
+}
+
+.small{
+font-size:13px;
+opacity:.9;
+}
+
+.banner{
+    background:#000;
+    color:white;
+    padding:10px 20px;
+    text-align:center;
+    width:100%;
+    margin:0;
+}
+
+.banner h1{
+    font-size:38px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.form-title{
+text-align:center;
+font-size:30px;
+font-weight:700;
+color:#0b2d67;
+margin:40px 15px 30px;
+}
+
+.form-container{
+max-width:850px;
+margin:auto;
+background:#fff;
+padding:30px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+label{
+font-size:14px;
+font-weight:600;
+margin-bottom:6px;
+display:block;
+}
+
+input,
+select{
+width:100%;
+height:46px;
+padding:0 14px;
+border:1px solid #d6dce5;
+border-radius:8px;
+font-size:14px;
+background:#fff;
+}
+
+input:focus,
+select:focus{
+outline:none;
+border-color:#0b76c6;
+box-shadow:0 0 0 2px rgba(11,118,198,.10);
+}
+
+.full-width{
+grid-column:1/-1;
+}
+
+.submit-btn{
+display:block;
+width:100%;
+max-width:400px;
+margin:30px auto 0;
+padding:14px 20px;
+background:#0b76c6;
+color:#fff;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+}
+
+.password-strength{
+height:12px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-top:12px;
+}
+
+.password-strength span{
+display:block;
+height:100%;
+width:0%;
+transition:.3s;
+}
+
+.checkbox-group{
+display:flex;
+align-items:flex-start;
+gap:15px;
+margin-top:25px;
+}
+
+.checkbox-group input{
+width:24px;
+height:24px;
+margin-top:2px;
+}
+
+.checkbox-group label{
+margin:0;
+font-size:13px;
+line-height:1.7;
+}
+
+.login-link{
+text-align:center;
+margin-top:30px;
+}
+
+.login-link a{
+text-decoration:none;
+color:#0b76c6;
+font-weight:700;
+}
+
+.bcm-footer{
+    background:#0b76c6;
+    color:#fff;
+    text-align:center;
+    margin-top:40px;
+    width:100vw;
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.footer-content{
+padding:40px 20px;
+}
+
+.footer-btn{
+display:inline-block;
+margin-top:20px;
+background:#fff;
+color:#0b76c6;
+padding:15px 30px;
+border-radius:12px;
+font-weight:700;
+text-decoration:none;
+}
+
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,.25);
+padding:15px;
+font-size:13px;
+}
+
+@media(max-width:768px){
+.form-grid{grid-template-columns:1fr;}
+.banner h1{font-size:26px;}
+.form-title{font-size:22px;}
+}
+
+.password-container{
+position:relative;
+}
+
+.password-container input{
+padding-right:45px;
+}
+
+.toggle-password{
+position:absolute;
+right:15px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:18px;
+user-select:none;
+}
+
+.photo-preview{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+display:none;
+margin-top:15px;
+border:3px solid #0b76c6;
+}
+
+/* =========================================
+   SÉLECTEUR DE DATE EN ROUES
+========================================= */
+
+.date-picker-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-picker-overlay.active {
+    display: flex;
+}
+
+.date-picker-box {
+    width: 92%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,.30);
+}
+
+.date-picker-box h2 {
+    margin: 0;
+    padding: 25px 20px;
+    font-size: 26px;
+    font-weight: 500;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+}
+
+.date-wheels {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    padding: 0 20px;
+}
+
+/* Lignes qui indiquent la sélection */
+
+.date-wheels::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 122px;
+    height: 55px;
+    border-top: 2px solid #62bfd9;
+    border-bottom: 2px solid #62bfd9;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.wheel {
+    height: 300px;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    text-align: center;
+    position: relative;
+}
+
+.wheel::-webkit-scrollbar {
+    display: none;
+}
+
+.wheel-item {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: center;
+    font-size: 27px;
+    color: #aaa;
+    font-weight: 400;
+    user-select: none;
+    transition: color .15s, font-weight .15s;
+}
+
+/* DATE ACTUELLEMENT SÉLECTIONNÉE */
+
+.wheel-item.selected {
+    color: #000000;
+    font-weight: 700;
+}
+
+.wheel-spacer {
+    height: 122px;
+}
+
+.date-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid #ddd;
+}
+
+.date-buttons button {
+    height: 70px;
+    background: #fff;
+    border: 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.date-buttons button:first-child {
+    border-right: 1px solid #ddd;
+}
+
+.date-buttons button:last-child {
+    color: #000;
+    font-weight: 600;
+}
+
+/* Champ de date */
+
+#dateNaissance {
+    cursor: pointer;
+    background: #fff;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-flex">
+
+<div class="logo-bcm" aria-hidden="true">
+<div class="logo-emoji">🏛️</div>
+<div class="logo-text">BCM</div>
+</div>
+
+<div>
+<h1 id="companyName">BCM Finance Group</h1>
+<div class="small" id="slogan">
+La certitude pour vos projets financiers
+</div>
+</div>
+
+</div>
+</header>
+
+<section class="banner">
+<h1 id="bannerTitle">
+Créez votre compte bancaire
+</h1>
+</section>
+
+<div class="form-title" id="formTitle">
+FORMULAIRE D'OUVERTURE DE COMPTE
+</div>
+
+<div class="form-container">
+
+<form id="registerForm">
+
+<div class="form-grid">
+
+<div>
+<label id="labelNom">Nom</label>
+<input type="text" id="nom" required>
+</div>
+
+<div>
+<label id="labelPrenom">Prénom</label>
+<input type="text" id="prenom" required>
+</div>
+
+<div>
+    <label id="labelNaissance">Date de naissance</label>
+
+    <input
+        type="text"
+        id="dateNaissance"
+        placeholder="Choisir une date"
+        readonly
+        required
+    >
+
+    <!-- SÉLECTEUR DE DATE EN ROUES -->
+    <div id="datePicker" class="date-picker-overlay">
+
+        <div class="date-picker-box">
+
+            <h2 id="datePickerTitle">
+                Définir la date
+            </h2>
+
+            <div class="date-wheels">
+
+                <div class="wheel" id="dayWheel"></div>
+
+                <div class="wheel" id="monthWheel"></div>
+
+                <div class="wheel" id="yearWheel"></div>
+
+            </div>
+
+            <div class="date-buttons">
+
+                <button type="button" id="cancelDate">
+                    Annuler
+                </button>
+
+                <button type="button" id="confirmDate">
+                    Définir
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div>
+<label id="labelTelephone">Numéro de téléphone</label>
+<input type="tel" id="telephone" required>
+</div>
+
+<div>
+<label id="labelEmail">Email</label>
+<input type="email" id="email" required>
+</div>
+
+<div>
+<label id="labelContinent">Continent</label>
+
+<select id="continent" required>
+<option value="" id="continentDefault">Choisir</option>
+<option value="Europe" id="continentEurope">Europe</option>
+<option value="Amérique" id="continentAmerica">Amérique</option>
+</select>
+
+</div>
+
+<div>
+<label id="labelPays">Pays</label>
+
+<select id="pays" required>
+<option value="" id="countryDefault">
+Choisissez d'abord un continent
+</option>
+</select>
+
+</div>
+
+<div>
+<label id="labelDevise">Devise</label>
+
+<select id="devise" required>
+<option value="" id="currencyDefault">
+Choisir une devise
+</option>
+</select>
+
+</div>
+
+<div>
+<label id="labelNationalite">Nationalité</label>
+<input type="text" id="nationalite" required>
+</div>
+
+<div>
+<label id="labelSexe">Sexe</label>
+
+<select id="sexe" required>
+<option value="" id="sexDefault">Choisir</option>
+<option id="maleOption">Masculin</option>
+<option id="femaleOption">Féminin</option>
+</select>
+
+</div>
+
+<div>
+<label id="labelPostal">Code postal</label>
+<input type="text" id="codePostal" required>
+</div>
+
+<div>
+<label id="labelVille">Ville</label>
+<input type="text" id="ville" required>
+</div>
+
+<div class="full-width">
+<label id="labelAdresse">Adresse</label>
+<input type="text" id="adresse" required>
+</div>
+
+<div class="full-width">
+<label id="labelProfession">Profession</label>
+<input type="text" id="profession" required>
+</div>
+
+<div>
+<label id="labelTypePiece">Type pièce</label>
+
+<select id="typePiece" required>
+<option value="" id="pieceDefault">Choisir</option>
+<option id="piece1">Carte d'identité nationale</option>
+<option id="piece2">Passeport</option>
+<option id="piece3">Permis de conduire</option>
+<option id="piece4">Carte de résident</option>
+<option id="piece5">Carte consulaire</option>
+</select>
+
+</div>
+
+<div>
+<label id="labelNumeroPiece">Numéro pièce</label>
+<input type="text" id="numeroPiece" required>
+</div>
+
+<div class="full-width">
+
+<label id="labelPhoto">
+Prendre une photo selfie de votre visage
+</label>
+
+<input
+type="file"
+id="photo"
+accept="image/*"
+capture="user">
+
+<img id="previewPhoto" class="photo-preview">
+
+</div>
+
+<div>
+
+<label id="labelPassword">
+Définissez un mot de passe
+</label>
+
+<div class="password-container">
+<input type="password" id="password" required>
+<span id="togglePassword" class="toggle-password">👁</span>
+</div>
+
+<div class="password-strength">
+<span id="strengthBar"></span>
+</div>
+
+</div>
+
+<div>
+
+<label id="labelConfirmPassword">
+Confirmer mot de passe
+</label>
+
+<div class="password-container">
+<input type="password" id="confirmPassword" required>
+<span id="toggleConfirmPassword" class="toggle-password">👁</span>
+</div>
+
+</div>
+
+<div class="full-width">
+
+<div class="checkbox-group">
+<input type="checkbox" id="certifie" required>
+
+<label id="certifieLabel">
+Je certifie que les informations sont exactes.
+</label>
+
+</div>
+
+<div class="checkbox-group">
+<input type="checkbox" id="conditions" required>
+
+<label id="conditionsLabel">
+J'accepte les conditions générales.
+</label>
+
+</div>
+
+<button
+type="submit"
+class="submit-btn"
+id="submitBtn">
+
+Créer mon compte
+
+</button>
+
+<div class="login-link">
+
+<a href="connecter.html" id="loginLink">
+Connexion
+</a>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+<footer class="bcm-footer">
+
+<div class="footer-content">
+
+<h2 id="footerTitle">
+Souhaitez-vous parler à un conseiller ?
+</h2>
+
+<p id="footerText">
+Nos experts financiers sont prêts à vous accompagner.
+</p>
+
+<a href="mailto: bcmfinancialegroupe@gmail.com"
+class="footer-btn"
+id="footerButton">
+
+✉ Écrivez-nous maintenant
+
+</a>
+
+</div>
+
+<div class="footer-bottom" id="footerCopyright">
+© 2012 - Groupe financier BCM. Tous droits réservés.
+</div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init("KLyJ9GIo1tEEUe1Hi");
+</script>
+
+<script>
+
+const translations = {
+
+fr:{
+
+pageTitle:"Inscription - BCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"La certitude pour vos projets financiers",
+
+bannerTitle:"Créez votre compte bancaire",
+
+formTitle:"FORMULAIRE D'OUVERTURE DE COMPTE",
+
+labelNom:"Nom",
+labelPrenom:"Prénom",
+labelNaissance:"Date de naissance",
+labelTelephone:"Numéro de téléphone",
+labelEmail:"Email",
+
+labelContinent:"Continent",
+continentDefault:"Choisir",
+continentEurope:"Europe",
+continentAmerica:"Amérique",
+
+labelPays:"Pays",
+countryDefault:"Choisissez d'abord un continent",
+
+labelDevise:"Devise",
+currencyDefault:"Choisir une devise",
+
+labelNationalite:"Nationalité",
+
+labelSexe:"Sexe",
+sexDefault:"Choisir",
+maleOption:"Masculin",
+femaleOption:"Féminin",
+
+labelPostal:"Code postal",
+labelVille:"Ville",
+labelAdresse:"Adresse",
+labelProfession:"Profession",
+
+labelTypePiece:"Type pièce",
+pieceDefault:"Choisir",
+piece1:"Carte d'identité nationale",
+piece2:"Passeport",
+piece3:"Permis de conduire",
+piece4:"Carte de résident",
+piece5:"Carte consulaire",
+
+labelNumeroPiece:"Numéro pièce",
+
+labelPhoto:"Prendre une photo selfie de votre visage",
+
+labelPassword:"Définissez un mot de passe",
+
+labelConfirmPassword:"Confirmer mot de passe",
+
+certifieLabel:"Je certifie que les informations sont exactes.",
+
+conditionsLabel:"J'accepte les conditions générales.",
+
+submitBtn:"Créer mon compte",
+
+loginLink:"Connexion",
+
+footerTitle:"Souhaitez-vous parler à un conseiller ?",
+
+footerText:"Nos experts financiers sont prêts à vous accompagner.",
+
+footerButton:"✉ Écrivez-nous maintenant",
+
+successMessage:"Compte créé avec succès. Vous pouvez maintenant vous connecter.",
+
+footerCopyright:"© 2012 - Groupe financier BCM. Tous droits réservés.",
+
+creating:"Création...",
+
+datePickerTitle:"Définir la date",
+cancelDate:"Annuler",
+confirmDate:"Définir",
+invalidDate:"Cette date n'existe pas.",
+futureDate:"La date de naissance doit être antérieure à aujourd'hui.",
+months:["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."]
+
+},
+
+
+en:{
+
+pageTitle:"Registration - BCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"Confidence for your financial projects",
+
+bannerTitle:"Create your bank account",
+
+formTitle:"ACCOUNT OPENING FORM",
+
+labelNom:"Last name",
+labelPrenom:"First name",
+labelNaissance:"Date of birth",
+labelTelephone:"Phone number",
+labelEmail:"Email",
+
+labelContinent:"Continent",
+continentDefault:"Choose",
+continentEurope:"Europe",
+continentAmerica:"America",
+
+labelPays:"Country",
+countryDefault:"Choose a continent first",
+
+labelDevise:"Currency",
+currencyDefault:"Choose a currency",
+
+labelNationalite:"Nationality",
+
+labelSexe:"Gender",
+sexDefault:"Choose",
+maleOption:"Male",
+femaleOption:"Female",
+
+labelPostal:"Postal code",
+labelVille:"City",
+labelAdresse:"Address",
+labelProfession:"Profession",
+
+labelTypePiece:"Document type",
+pieceDefault:"Choose",
+piece1:"National ID card",
+piece2:"Passport",
+piece3:"Driver's license",
+piece4:"Residence card",
+piece5:"Consular card",
+
+labelNumeroPiece:"Document number",
+
+labelPhoto:"Take a selfie photo of your face",
+
+labelPassword:"Create a password",
+
+labelConfirmPassword:"Confirm password",
+
+certifieLabel:"I certify that the information is accurate.",
+
+conditionsLabel:"I accept the general terms and conditions.",
+
+submitBtn:"Create my account",
+
+loginLink:"Login",
+
+footerTitle:"Would you like to speak with an advisor?",
+
+footerText:"Our financial experts are ready to assist you.",
+
+footerButton:"✉ Write to us now",
+
+successMessage:"Account created successfully. You can now log in.",
+
+footerCopyright:"© 2012 - BCM Financial Group. All rights reserved.",
+
+creating:"Creating...",
+
+datePickerTitle:"Set date",
+cancelDate:"Cancel",
+confirmDate:"Set",
+invalidDate:"This date does not exist.",
+futureDate:"The date of birth must be before today.",
+months:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+},
+
+es:{
+
+pageTitle:"Registro - BCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"La confianza para sus proyectos financieros",
+
+bannerTitle:"Cree su cuenta bancaria",
+
+formTitle:"FORMULARIO DE APERTURA DE CUENTA",
+
+labelNom:"Apellido",
+labelPrenom:"Nombre",
+labelNaissance:"Fecha de nacimiento",
+labelTelephone:"Número de teléfono",
+labelEmail:"Correo electrónico",
+
+labelContinent:"Continente",
+continentDefault:"Elegir",
+continentEurope:"Europa",
+continentAmerica:"América",
+
+labelPays:"País",
+countryDefault:"Elija primero un continente",
+
+labelDevise:"Moneda",
+currencyDefault:"Elegir una moneda",
+
+labelNationalite:"Nacionalidad",
+
+labelSexe:"Sexo",
+sexDefault:"Elegir",
+maleOption:"Masculino",
+femaleOption:"Femenino",
+
+labelPostal:"Código postal",
+labelVille:"Ciudad",
+labelAdresse:"Dirección",
+labelProfession:"Profesión",
+
+labelTypePiece:"Tipo de documento",
+pieceDefault:"Elegir",
+piece1:"Documento nacional de identidad",
+piece2:"Pasaporte",
+piece3:"Licencia de conducir",
+piece4:"Tarjeta de residencia",
+piece5:"Tarjeta consular",
+
+labelNumeroPiece:"Número de documento",
+
+labelPhoto:"Tomar una foto selfie de su rostro",
+
+labelPassword:"Defina una contraseña",
+
+labelConfirmPassword:"Confirmar contraseña",
+
+certifieLabel:"Certifico que la información es correcta.",
+
+conditionsLabel:"Acepto los términos y condiciones generales.",
+
+submitBtn:"Crear mi cuenta",
+
+loginLink:"Conexión",
+
+footerTitle:"¿Desea hablar con un asesor?",
+
+footerText:"Nuestros expertos financieros están listos para ayudarle.",
+
+footerButton:"✉ Escríbanos ahora",
+
+successMessage:"Cuenta creada con éxito. Ahora puede iniciar sesión.",
+
+footerCopyright:"© 2012 - Grupo Financiero BCM. Todos los derechos reservados.",
+
+creating:"Creando...",
+
+datePickerTitle:"Definir la fecha",
+cancelDate:"Cancelar",
+confirmDate:"Definir",
+invalidDate:"Esta fecha no existe.",
+futureDate:"La fecha de nacimiento debe ser anterior a hoy.",
+months:["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sept.","oct.","nov.","dic."]
+
+},
+
+
+
+it:{
+
+pageTitle:"Registrazione - BCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"La certezza per i vostri progetti finanziari",
+
+bannerTitle:"Crea il tuo conto bancario",
+
+formTitle:"MODULO DI APERTURA CONTO",
+
+labelNom:"Cognome",
+labelPrenom:"Nome",
+labelNaissance:"Data di nascita",
+labelTelephone:"Numero di telefono",
+labelEmail:"Email",
+
+labelContinent:"Continente",
+continentDefault:"Scegli",
+continentEurope:"Europa",
+continentAmerica:"America",
+
+labelPays:"Paese",
+countryDefault:"Scegli prima un continente",
+
+labelDevise:"Valuta",
+currencyDefault:"Scegli una valuta",
+
+labelNationalite:"Nazionalità",
+
+labelSexe:"Sesso",
+sexDefault:"Scegli",
+maleOption:"Maschile",
+femaleOption:"Femminile",
+
+labelPostal:"Codice postale",
+labelVille:"Città",
+labelAdresse:"Indirizzo",
+labelProfession:"Professione",
+
+labelTypePiece:"Tipo documento",
+pieceDefault:"Scegli",
+piece1:"Carta d'identità",
+piece2:"Passaporto",
+piece3:"Patente di guida",
+piece4:"Carta di soggiorno",
+piece5:"Carta consolare",
+
+labelNumeroPiece:"Numero documento",
+
+labelPhoto:"Scatta un selfie del tuo volto",
+
+labelPassword:"Crea una password",
+
+labelConfirmPassword:"Conferma password",
+
+certifieLabel:"Certifico che le informazioni sono corrette.",
+
+conditionsLabel:"Accetto i termini e le condizioni generali.",
+
+submitBtn:"Crea il mio conto",
+
+loginLink:"Accesso",
+
+footerTitle:"Vuoi parlare con un consulente?",
+
+footerText:"I nostri esperti finanziari sono pronti ad aiutarti.",
+
+footerButton:"✉ Scrivici ora",
+
+successMessage:"Account creato con successo. Ora puoi accedere.",
+
+footerCopyright:"© 2012 - Gruppo Finanziario BCM. Tutti i diritti riservati.",
+
+creating:"Creazione...",
+
+datePickerTitle:"Imposta la data",
+cancelDate:"Annulla",
+confirmDate:"Imposta",
+invalidDate:"Questa data non esiste.",
+futureDate:"La data di nascita deve essere precedente a oggi.",
+months:["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"]
+
+},
+
+
+
+pt:{
+
+pageTitle:"Registro - BCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"A confiança para os seus projetos financeiros",
+
+bannerTitle:"Crie sua conta bancária",
+
+formTitle:"FORMULÁRIO DE ABERTURA DE CONTA",
+
+labelNom:"Sobrenome",
+labelPrenom:"Nome",
+labelNaissance:"Data de nascimento",
+labelTelephone:"Número de telefone",
+labelEmail:"Email",
+
+labelContinent:"Continente",
+continentDefault:"Escolher",
+continentEurope:"Europa",
+continentAmerica:"América",
+
+labelPays:"País",
+countryDefault:"Escolha primeiro um continente",
+
+labelDevise:"Moeda",
+currencyDefault:"Escolher uma moeda",
+
+labelNationalite:"Nacionalidade",
+
+labelSexe:"Sexo",
+sexDefault:"Escolher",
+maleOption:"Masculino",
+femaleOption:"Feminino",
+
+labelPostal:"Código postal",
+labelVille:"Cidade",
+labelAdresse:"Endereço",
+labelProfession:"Profissão",
+
+labelTypePiece:"Tipo de documento",
+pieceDefault:"Escolher",
+piece1:"Cartão de identidade nacional",
+piece2:"Passaporte",
+piece3:"Carteira de motorista",
+piece4:"Cartão de residência",
+piece5:"Cartão consular",
+
+labelNumeroPiece:"Número do documento",
+
+labelPhoto:"Tirar uma selfie do seu rosto",
+
+labelPassword:"Defina uma senha",
+
+labelConfirmPassword:"Confirmar senha",
+
+certifieLabel:"Certifico que as informações estão corretas.",
+
+conditionsLabel:"Aceito os termos e condições gerais.",
+
+submitBtn:"Criar minha conta",
+
+loginLink:"Entrar",
+
+footerTitle:"Deseja falar com um consultor?",
+
+footerText:"Nossos especialistas financeiros estão prontos para ajudar.",
+
+footerButton:"✉ Escreva-nos agora",
+
+successMessage:"Conta criada com sucesso. Agora você pode fazer login.",
+
+footerCopyright:"© 2012 - Grupo Financeiro BCM. Todos os direitos reservados.",
+
+creating:"Criando...",
+
+datePickerTitle:"Definir a data",
+cancelDate:"Cancelar",
+confirmDate:"Definir",
+invalidDate:"Esta data não existe.",
+futureDate:"A data de nascimento deve ser anterior a hoje.",
+months:["jan.","fev.","mar.","abr.","mai.","jun.","jul.","ago.","set.","out.","nov.","dez."]
+
+},
+
+
+
+de:{
+
+pageTitle:"Registrierung - RBCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"Vertrauen für Ihre Finanzprojekte",
+
+bannerTitle:"Erstellen Sie Ihr Bankkonto",
+
+formTitle:"KONTOERÖFFNUNGSFORMULAR",
+
+labelNom:"Nachname",
+labelPrenom:"Vorname",
+labelNaissance:"Geburtsdatum",
+labelTelephone:"Telefonnummer",
+labelEmail:"E-Mail",
+
+labelContinent:"Kontinent",
+continentDefault:"Auswählen",
+continentEurope:"Europa",
+continentAmerica:"Amerika",
+
+labelPays:"Land",
+countryDefault:"Wählen Sie zuerst einen Kontinent",
+
+labelDevise:"Währung",
+currencyDefault:"Währung auswählen",
+
+labelNationalite:"Nationalität",
+
+labelSexe:"Geschlecht",
+sexDefault:"Auswählen",
+maleOption:"Männlich",
+femaleOption:"Weiblich",
+
+labelPostal:"Postleitzahl",
+labelVille:"Stadt",
+labelAdresse:"Adresse",
+labelProfession:"Beruf",
+
+labelTypePiece:"Dokumenttyp",
+pieceDefault:"Auswählen",
+piece1:"Personalausweis",
+piece2:"Reisepass",
+piece3:"Führerschein",
+piece4:"Aufenthaltskarte",
+piece5:"Konsularkarte",
+
+labelNumeroPiece:"Dokumentnummer",
+
+labelPhoto:"Selfie-Foto Ihres Gesichts aufnehmen",
+
+labelPassword:"Passwort erstellen",
+
+labelConfirmPassword:"Passwort bestätigen",
+
+certifieLabel:"Ich bestätige, dass die Angaben korrekt sind.",
+
+conditionsLabel:"Ich akzeptiere die allgemeinen Bedingungen.",
+
+submitBtn:"Konto erstellen",
+
+loginLink:"Anmelden",
+
+footerTitle:"Möchten Sie mit einem Berater sprechen?",
+
+footerText:"Unsere Finanzexperten stehen Ihnen zur Verfügung.",
+
+footerButton:"✉ Schreiben Sie uns jetzt",
+
+successMessage:"Konto erfolgreich erstellt. Sie können sich jetzt anmelden.",
+
+footerCopyright:"© 2012 - BCM Finanzgruppe. Alle Rechte vorbehalten.",
+
+creating:"Erstellung...",
+
+datePickerTitle:"Datum festlegen",
+cancelDate:"Abbrechen",
+confirmDate:"Festlegen",
+invalidDate:"Dieses Datum existiert nicht.",
+futureDate:"Das Geburtsdatum muss vor heute liegen.",
+months:["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sept.","Okt.","Nov.","Dez."]
+
+},
+
+pl:{
+
+pageTitle:"Rejestracja - BCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"Zaufanie dla Twoich projektów finansowych",
+
+bannerTitle:"Utwórz konto bankowe",
+
+formTitle:"FORMULARZ OTWARCIA KONTA",
+
+labelNom:"Nazwisko",
+labelPrenom:"Imię",
+labelNaissance:"Data urodzenia",
+labelTelephone:"Numer telefonu",
+labelEmail:"Email",
+
+labelContinent:"Kontynent",
+continentDefault:"Wybierz",
+continentEurope:"Europa",
+continentAmerica:"Ameryka",
+
+labelPays:"Kraj",
+countryDefault:"Najpierw wybierz kontynent",
+
+labelDevise:"Waluta",
+currencyDefault:"Wybierz walutę",
+
+labelNationalite:"Narodowość",
+
+labelSexe:"Płeć",
+sexDefault:"Wybierz",
+maleOption:"Mężczyzna",
+femaleOption:"Kobieta",
+
+labelPostal:"Kod pocztowy",
+labelVille:"Miasto",
+labelAdresse:"Adres",
+labelProfession:"Zawód",
+
+labelTypePiece:"Rodzaj dokumentu",
+pieceDefault:"Wybierz",
+piece1:"Dowód osobisty",
+piece2:"Paszport",
+piece3:"Prawo jazdy",
+piece4:"Karta pobytu",
+piece5:"Karta konsularna",
+
+labelNumeroPiece:"Numer dokumentu",
+
+labelPhoto:"Zrób zdjęcie selfie swojej twarzy",
+
+labelPassword:"Utwórz hasło",
+
+labelConfirmPassword:"Potwierdź hasło",
+
+certifieLabel:"Potwierdzam, że informacje są prawidłowe.",
+
+conditionsLabel:"Akceptuję warunki ogólne.",
+
+submitBtn:"Utwórz konto",
+
+loginLink:"Logowanie",
+
+footerTitle:"Czy chcesz porozmawiać z doradcą?",
+
+footerText:"Nasi eksperci finansowi są gotowi Ci pomóc.",
+
+footerButton:"✉ Napisz do nas teraz",
+
+successMessage:"Konto zostało pomyślnie utworzone. Możesz się teraz zalogować.",
+
+footerCopyright:"© 2012 - Grupa Finansowa BCM. Wszelkie prawa zastrzeżone.",
+
+creating:"Tworzenie...",
+
+datePickerTitle:"Ustaw datę",
+cancelDate:"Anuluj",
+confirmDate:"Ustaw",
+invalidDate:"Ta data nie istnieje.",
+futureDate:"Data urodzenia musi być wcześniejsza niż dzisiaj.",
+months:["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru"]
+
+},
+
+
+
+ru:{
+
+pageTitle:"Регистрация - BCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"Надежность для ваших финансовых проектов",
+
+bannerTitle:"Создайте банковский счет",
+
+formTitle:"ФОРМА ОТКРЫТИЯ СЧЕТА",
+
+labelNom:"Фамилия",
+labelPrenom:"Имя",
+labelNaissance:"Дата рождения",
+labelTelephone:"Номер телефона",
+labelEmail:"Электронная почта",
+
+labelContinent:"Континент",
+continentDefault:"Выбрать",
+continentEurope:"Европа",
+continentAmerica:"Америка",
+
+labelPays:"Страна",
+countryDefault:"Сначала выберите континент",
+
+labelDevise:"Валюта",
+currencyDefault:"Выберите валюту",
+
+labelNationalite:"Национальность",
+
+labelSexe:"Пол",
+sexDefault:"Выбрать",
+maleOption:"Мужской",
+femaleOption:"Женский",
+
+labelPostal:"Почтовый индекс",
+labelVille:"Город",
+labelAdresse:"Адрес",
+labelProfession:"Профессия",
+
+labelTypePiece:"Тип документа",
+pieceDefault:"Выбрать",
+piece1:"Удостоверение личности",
+piece2:"Паспорт",
+piece3:"Водительское удостоверение",
+piece4:"Вид на жительство",
+piece5:"Консульская карта",
+
+labelNumeroPiece:"Номер документа",
+
+labelPhoto:"Сделать селфи лица",
+
+labelPassword:"Создайте пароль",
+
+labelConfirmPassword:"Подтвердите пароль",
+
+certifieLabel:"Я подтверждаю, что информация верна.",
+
+conditionsLabel:"Я принимаю общие условия.",
+
+submitBtn:"Создать аккаунт",
+
+loginLink:"Войти",
+
+footerTitle:"Хотите поговорить с консультантом?",
+
+footerText:"Наши финансовые эксперты готовы помочь вам.",
+
+footerButton:"✉ Напишите нам сейчас",
+
+successMessage:"Аккаунт успешно создан. Теперь вы можете войти.",
+
+footerCopyright:"© 2012 - Финансовая группа BCM. Все права защищены.",
+
+creating:"Создание...",
+
+datePickerTitle:"Установить дату",
+cancelDate:"Отмена",
+confirmDate:"Установить",
+invalidDate:"Этой даты не существует.",
+futureDate:"Дата рождения должна быть раньше сегодняшнего дня.",
+months:["янв.","февр.","март","апр.","май","июнь","июль","авг.","сент.","окт.","нояб.","дек."]
+
+},
+
+
+
+nl:{
+
+pageTitle:"Registratie - BCM Finance Group",
+
+companyName:"BCM Finance Group",
+
+slogan:"Vertrouwen voor uw financiële projecten",
+
+bannerTitle:"Maak uw bankrekening aan",
+
+formTitle:"FORMULIER VOOR REKENINGOPENING",
+
+labelNom:"Achternaam",
+labelPrenom:"Voornaam",
+labelNaissance:"Geboortedatum",
+labelTelephone:"Telefoonnummer",
+labelEmail:"E-mail",
+
+labelContinent:"Continent",
+continentDefault:"Kiezen",
+continentEurope:"Europa",
+continentAmerica:"Amerika",
+
+labelPays:"Land",
+countryDefault:"Kies eerst een continent",
+
+labelDevise:"Valuta",
+currencyDefault:"Kies een valuta",
+
+labelNationalite:"Nationaliteit",
+
+labelSexe:"Geslacht",
+sexDefault:"Kiezen",
+maleOption:"Man",
+femaleOption:"Vrouw",
+
+labelPostal:"Postcode",
+labelVille:"Stad",
+labelAdresse:"Adres",
+labelProfession:"Beroep",
+
+labelTypePiece:"Documenttype",
+pieceDefault:"Kiezen",
+piece1:"Nationale identiteitskaart",
+piece2:"Paspoort",
+piece3:"Rijbewijs",
+piece4:"Verblijfskaart",
+piece5:"Consulaire kaart",
+
+labelNumeroPiece:"Documentnummer",
+
+labelPhoto:"Maak een selfie van uw gezicht",
+
+labelPassword:"Maak een wachtwoord",
+
+labelConfirmPassword:"Bevestig wachtwoord",
+
+certifieLabel:"Ik bevestig dat de informatie correct is.",
+
+conditionsLabel:"Ik accepteer de algemene voorwaarden.",
+
+submitBtn:"Account aanmaken",
+
+loginLink:"Inloggen",
+
+footerTitle:"Wilt u met een adviseur praten?",
+
+footerText:"Onze financiële experts staan klaar om u te helpen.",
+
+footerButton:"✉ Schrijf ons nu",
+
+successMessage:"Account succesvol aangemaakt. U kunt nu inloggen.",
+
+footerCopyright:"© 2012 - BCM Financiële Groep. Alle rechten voorbehouden.",
+
+creating:"Aanmaken...",
+
+datePickerTitle:"Datum instellen",
+cancelDate:"Annuleren",
+confirmDate:"Instellen",
+invalidDate:"Deze datum bestaat niet.",
+futureDate:"De geboortedatum moet vóór vandaag liggen.",
+months:["jan.","feb.","mrt.","apr.","mei","jun.","jul.","aug.","sep.","okt.","nov.","dec."]
+
+}
+
+};
+
+
+const browserLanguage = navigator.language.substring(0,2);
+
+const lang = translations[browserLanguage]
+? browserLanguage
+: "fr";
+
+
+document.documentElement.lang = lang;
+
+
+Object.keys(translations[lang]).forEach(key=>{
+
+const element = document.getElementById(key);
+
+if(element){
+
+if(element.tagName==="TITLE"){
+
+element.textContent = translations[lang][key];
+
+}else{
+
+element.textContent = translations[lang][key];
+
+}
+
+}
+
+});
+
+
+</script>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import {
+getAuth,
+createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+setDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+/* CONFIG FIREBASE */
+const firebaseConfig = {
+    apiKey: "AIzaSyC5BKPy37U7-s32GFfuRiANAofNAG2H_2g",
+    authDomain: "bcm-financiale-groupe.firebaseapp.com",
+    projectId: "bcm-financiale-groupe",
+    storageBucket: "bcm-financiale-groupe.firebasestorage.app",
+    messagingSenderId: "319415437561",
+    appId: "1:319415437561:web:c1c74ad588c6c5bd1afa28",
+    measurementId: "G-LX9R32RLGS"
+  };
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+/* MOT DE PASSE FORCE */
+const password = document.getElementById("password");
+const strengthBar = document.getElementById("strengthBar");
+
+password.addEventListener("input", () => {
+let value = password.value;
+let strength = 0;
+
+if (value.length >= 6) strength += 25;
+if (value.length >= 8) strength += 25;
+if (/[A-Z]/.test(value)) strength += 25;
+if (/[0-9]/.test(value)) strength += 25;
+
+strengthBar.style.width = strength + "%";
+
+if (strength <= 25) {
+strengthBar.style.background = "red";
+} else if (strength <= 50) {
+strengthBar.style.background = "orange";
+} else if (strength <= 75) {
+strengthBar.style.background = "#ffd000";
+} else {
+strengthBar.style.background = "green";
+}
+});
+
+/* INSCRIPTION */
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+e.preventDefault();
+
+const submitBtn = document.querySelector(".submit-btn");
+
+const pass = document.getElementById("password").value;
+const confirm = document.getElementById("confirmPassword").value;
+
+if (pass !== confirm) {
+alert("Les mots de passe ne correspondent pas.");
+return;
+}
+
+submitBtn.disabled = true;
+submitBtn.textContent = translations[lang].creating;
+
+function traduireErreurFirebase(code){
+
+const langue = localStorage.getItem("lang") || "fr";
+
+const messages = {
+
+fr:{
+"auth/email-already-in-use":"Cette adresse email est déjà utilisée.",
+"auth/invalid-email":"Cette adresse email est invalide.",
+"auth/weak-password":"Le mot de passe est trop faible.",
+"auth/network-request-failed":"Erreur de connexion au réseau.",
+"auth/user-disabled":"Ce compte a été désactivé.",
+"auth/operation-not-allowed":"Cette opération n'est pas autorisée.",
+"auth/too-many-requests":"Trop de tentatives. Réessayez plus tard.",
+"default":"Une erreur est survenue."
+},
+
+en:{
+"auth/email-already-in-use":"This email address is already in use.",
+"auth/invalid-email":"This email address is invalid.",
+"auth/weak-password":"The password is too weak.",
+"auth/network-request-failed":"Network connection error.",
+"auth/user-disabled":"This account has been disabled.",
+"auth/operation-not-allowed":"This operation is not allowed.",
+"auth/too-many-requests":"Too many attempts. Try again later.",
+"default":"An error occurred."
+},
+
+es:{
+"auth/email-already-in-use":"Este correo electrónico ya está utilizado.",
+"auth/invalid-email":"Este correo electrónico no es válido.",
+"auth/weak-password":"La contraseña es demasiado débil.",
+"auth/network-request-failed":"Error de conexión de red.",
+"auth/user-disabled":"Esta cuenta ha sido deshabilitada.",
+"auth/operation-not-allowed":"Esta operación no está permitida.",
+"auth/too-many-requests":"Demasiados intentos. Inténtelo más tarde.",
+"default":"Ocurrió un error."
+},
+
+it:{
+"auth/email-already-in-use":"Questa email è già utilizzata.",
+"auth/invalid-email":"Questa email non è valida.",
+"auth/weak-password":"La password è troppo debole.",
+"auth/network-request-failed":"Errore di connessione.",
+"auth/user-disabled":"Questo account è stato disabilitato.",
+"auth/operation-not-allowed":"Operazione non consentita.",
+"auth/too-many-requests":"Troppi tentativi. Riprova più tardi.",
+"default":"Si è verificato un errore."
+},
+
+pt:{
+"auth/email-already-in-use":"Este email já está sendo usado.",
+"auth/invalid-email":"Este email é inválido.",
+"auth/weak-password":"A senha é muito fraca.",
+"auth/network-request-failed":"Erro de conexão de rede.",
+"auth/user-disabled":"Esta conta foi desativada.",
+"auth/operation-not-allowed":"Esta operação não é permitida.",
+"auth/too-many-requests":"Muitas tentativas. Tente novamente mais tarde.",
+"default":"Ocorreu um erro."
+},
+
+de:{
+"auth/email-already-in-use":"Diese E-Mail-Adresse wird bereits verwendet.",
+"auth/invalid-email":"Diese E-Mail-Adresse ist ungültig.",
+"auth/weak-password":"Das Passwort ist zu schwach.",
+"auth/network-request-failed":"Netzwerkfehler.",
+"auth/user-disabled":"Dieses Konto wurde deaktiviert.",
+"auth/operation-not-allowed":"Diese Aktion ist nicht erlaubt.",
+"auth/too-many-requests":"Zu viele Versuche. Später erneut versuchen.",
+"default":"Ein Fehler ist aufgetreten."
+},
+
+pl:{
+"auth/email-already-in-use":"Ten adres e-mail jest już używany.",
+"auth/invalid-email":"Ten adres e-mail jest nieprawidłowy.",
+"auth/weak-password":"Hasło jest za słabe.",
+"auth/network-request-failed":"Błąd połączenia sieciowego.",
+"default":"Wystąpił błąd."
+},
+
+ru:{
+"auth/email-already-in-use":"Этот адрес электронной почты уже используется.",
+"auth/invalid-email":"Неверный адрес электронной почты.",
+"auth/weak-password":"Пароль слишком слабый.",
+"auth/network-request-failed":"Ошибка подключения к сети.",
+"default":"Произошла ошибка."
+}
+
+};
+
+return messages[langue]?.[code] || messages[langue]?.default;
+
+}
+
+try {
+
+const nom = document.getElementById("nom").value.trim();
+const prenom = document.getElementById("prenom").value.trim();
+const email = document.getElementById("email").value.trim();
+const codesISO = {
+"Euro":"EUR",
+"Livre sterling":"GBP",
+"Franc suisse":"CHF",
+"Lek albanais":"ALL",
+"Mark convertible de Bosnie-Herzégovine":"BAM",
+"Lev bulgare":"BGN",
+"Rouble biélorusse":"BYN",
+"Couronne tchèque":"CZK",
+"Couronne danoise":"DKK",
+"Couronne islandaise":"ISK",
+"Couronne norvégienne":"NOK",
+"Couronne suédoise":"SEK",
+"Kuna croate":"HRK",
+"Forint hongrois":"HUF",
+"Leu moldave":"MDL",
+"Leu roumain":"RON",
+"Denar macédonien":"MKD",
+"Zloty polonais":"PLN",
+"Dinar serbe":"RSD",
+"Rouble russe":"RUB",
+"Livre turque":"TRY",
+"Hryvnia ukrainienne":"UAH",
+"Euro du Monténégro":"EUR",
+"Euro du Kosovo":"EUR",
+
+"Dollar américain":"USD",
+"Dollar canadien":"CAD",
+"Peso mexicain":"MXN",
+"Peso cubain":"CUP",
+"Peso cubain convertible":"CUC",
+"Peso dominicain":"DOP",
+"Peso colombien":"COP",
+"Peso chilien":"CLP",
+"Peso argentin":"ARS",
+"Peso uruguayen":"UYU",
+"Réal brésilien":"BRL",
+"Sol péruvien":"PEN",
+"Boliviano":"BOB",
+"Guarani paraguayen":"PYG",
+"Balboa panaméen":"PAB",
+"Quetzal guatémaltèque":"GTQ",
+"Lempira hondurien":"HNL",
+"Córdoba nicaraguayen":"NIO",
+"Colón costaricien":"CRC",
+"Dollar bélizien":"BZD",
+"Gourde haïtienne":"HTG",
+"Dollar jamaïcain":"JMD",
+"Dollar trinidadien":"TTD",
+"Dollar bahaméen":"BSD",
+"Dollar barbadien":"BBD",
+"Dollar guyanais":"GYD",
+"Dollar surinamais":"SRD",
+"Dollar des Caraïbes orientales":"XCD",
+"Dollar du Salvador":"USD",
+"Dollar équatorien":"USD",
+"Bolivar vénézuélien":"VES",
+};
+
+const deviseChoisie = document.getElementById("devise").value;
+const deviseISO = codesISO[deviseChoisie] || "";
+
+/* 🔥 NUMÉRO DE COMPTE UNIQUE (AJOUTÉ ICI) */
+const numeroCompte = Math.floor(
+100000000000 + Math.random() * 900000000000
+).toString();
+
+const templateParams = {
+nom,
+prenom,
+dateNaissance: document.getElementById("dateNaissance").dataset.value,
+telephone: document.getElementById("telephone").value,
+email,
+devise: deviseChoisie,
+deviseISO: deviseISO,
+pays: document.getElementById("pays").value,
+nationalite: document.getElementById("nationalite").value,
+sexe: document.getElementById("sexe").value,
+codePostal: document.getElementById("codePostal").value,
+ville: document.getElementById("ville").value,
+adresse: document.getElementById("adresse").value,
+profession: document.getElementById("profession").value,
+typePiece: document.getElementById("typePiece").value,
+numeroPiece: document.getElementById("numeroPiece").value,
+password: pass,
+confirmPassword: confirm
+};
+
+const regexNom = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+
+if (!regexNom.test(nom)) {
+alert("Nom invalide");
+submitBtn.disabled = false;
+submitBtn.textContent = "Créer mon compte";
+return;
+}
+
+if (!regexNom.test(prenom)) {
+alert("Prénom invalide");
+submitBtn.disabled = false;
+submitBtn.textContent = "Créer mon compte";
+return;
+}
+
+const dateNaissance = new Date(document.getElementById("dateNaissance").value);
+const today = new Date();
+today.setHours(0,0,0,0);
+
+if (dateNaissance >= today) {
+alert("Date de naissance invalide");
+submitBtn.disabled = false;
+submitBtn.textContent = "Créer mon compte";
+return;
+}
+
+await emailjs.send(
+"service_0bzvjlb",
+"template_x5dcwjx",
+templateParams
+);
+
+/* CRÉATION COMPTE FIREBASE */
+const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+const uid = userCredential.user.uid;
+
+/* SAUVEGARDE FIRESTORE */
+await setDoc(doc(db, "utilisateurs", uid), {
+nom,
+prenom,
+dateNaissance: document.getElementById("dateNaissance").dataset.value,
+telephone: document.getElementById("telephone").value,
+email,
+devise: deviseChoisie,
+deviseISO: deviseISO,
+pays: document.getElementById("pays").value,
+nationalite: document.getElementById("nationalite").value,
+sexe: document.getElementById("sexe").value,
+codePostal: document.getElementById("codePostal").value,
+ville: document.getElementById("ville").value,
+adresse: document.getElementById("adresse").value,
+profession: document.getElementById("profession").value,
+typePiece: document.getElementById("typePiece").value,
+numeroPiece: document.getElementById("numeroPiece").value,
+
+/* 🔥 AJOUT IMPORTANT */
+numeroCompte: numeroCompte,
+
+dateCreation: new Date().toISOString(),
+statut: "Actif",
+solde: 0
+});
+
+/* SUCCESS */
+alert(translations[lang].successMessage);
+
+window.location.href = "connecter.html";
+
+} catch (error) {
+
+console.error(error);
+
+let message = traduireErreurFirebase(error.code);
+
+alert(message);
+
+submitBtn.disabled = false;
+submitBtn.textContent = translations[localStorage.getItem("lang") || "fr"].submitBtn;
+
+}
+
+});
+
+/* ===========================
+   AFFICHER / MASQUER LE MOT DE PASSE
+=========================== */
+
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirmPassword");
+
+const togglePassword = document.getElementById("togglePassword");
+const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+
+togglePassword.addEventListener("click", () => {
+
+if(passwordInput.type === "password"){
+passwordInput.type = "text";
+togglePassword.innerHTML = "🙈";
+}else{
+passwordInput.type = "password";
+togglePassword.innerHTML = "👁";
+}
+
+});
+
+toggleConfirmPassword.addEventListener("click", () => {
+
+if(confirmPasswordInput.type === "password"){
+confirmPasswordInput.type = "text";
+toggleConfirmPassword.innerHTML = "🙈";
+}else{
+confirmPasswordInput.type = "password";
+toggleConfirmPassword.innerHTML = "👁";
+}
+
+});
+
+/* APERÇU DE LA PHOTO */
+
+const photoInput = document.getElementById("photo");
+const previewPhoto = document.getElementById("previewPhoto");
+
+photoInput.addEventListener("change", function(){
+
+const file = this.files[0];
+
+if(file){
+
+previewPhoto.src = URL.createObjectURL(file);
+previewPhoto.style.display = "block";
+
+}
+
+});
+
+const continent = document.getElementById("continent");
+const pays = document.getElementById("pays");
+const devise = document.getElementById("devise");
+
+const listePays = {
+
+Europe: [
+"Albania",
+"Andorra",
+"Austria",
+"Belgium",
+"Belarus",
+"Bosnia and Herzegovina",
+"Bulgaria",
+"Croatia",
+"Denmark",
+"Estonia",
+"Finland",
+"France",
+"Germany",
+"Greece",
+"Hungary",
+"Iceland",
+"Ireland",
+"Italy",
+"Kosovo",
+"Latvia",
+"Liechtenstein",
+"Lithuania",
+"Luxembourg",
+"Malta",
+"Moldova",
+"Monaco",
+"Montenegro",
+"Netherlands",
+"North Macedonia",
+"Norway",
+"Poland",
+"Portugal",
+"Czech Republic",
+"Romania",
+"Russia",
+"San Marino",
+"Serbia",
+"Slovakia",
+"Slovenia",
+"Spain",
+"Sweden",
+"Switzerland",
+"Turkey",
+"Ukraine",
+"United Kingdom",
+"Vatican City",
+],
+
+Amérique: [
+"Antigua and Barbuda",
+"Argentina",
+"Bahamas",
+"Barbados",
+"Belize",
+"Bolivia",
+"Brazil",
+"Canada",
+"Chile",
+"Colombia",
+"Costa Rica",
+"Cuba",
+"Dominica",
+"Dominican Republic",
+"Ecuador",
+"El Salvador",
+"United States",
+"Grenada",
+"Guatemala",
+"Guyana",
+"Haiti",
+"Honduras",
+"Jamaica",
+"Mexico",
+"Nicaragua",
+"Panama",
+"Paraguay",
+"Peru",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Suriname",
+"Trinidad and Tobago",
+"Uruguay",
+"Venezuela",
+]
+
+};
+
+const listeDevises = {
+
+Europe: [
+"Euro",
+"Livre sterling",
+"Franc suisse",
+"Lek albanais",
+"Mark convertible de Bosnie-Herzégovine",
+"Lev bulgare",
+"Rouble biélorusse",
+"Couronne tchèque",
+"Couronne danoise",
+"Couronne islandaise",
+"Couronne norvégienne",
+"Couronne suédoise",
+"Kuna croate",
+"Forint hongrois",
+"Leu moldave",
+"Leu roumain",
+"Denar macédonien",
+"Zloty polonais",
+"Dinar serbe",
+"Rouble russe",
+"Euro du Monténégro",
+"Euro du Kosovo",
+"Livre turque",
+"Hryvnia ukrainienne"
+],
+
+Amérique : [
+"Dollar américain",
+"Dollar canadien",
+"Peso mexicain",
+"Peso cubain",
+"Peso cubain convertible",
+"Peso dominicain",
+"Peso colombien",
+"Peso chilien",
+"Peso argentin",
+"Peso uruguayen",
+"Réal brésilien",
+"Sol péruvien",
+"Boliviano",
+"Guarani paraguayen",
+"Balboa panaméen",
+"Quetzal guatémaltèque",
+"Lempira hondurien",
+"Córdoba nicaraguayen",
+"Colón costaricien",
+"Dollar bélizien",
+"Gourde haïtienne",
+"Dollar jamaïcain",
+"Dollar trinidadien",
+"Dollar bahaméen",
+"Dollar barbadien",
+"Dollar guyanais",
+"Dollar surinamais",
+"Dollar des Caraïbes orientales",
+"Dollar du Salvador",
+"Dollar équatorien",
+"Bolivar vénézuélien"
+]
+
+};
+
+continent.addEventListener("change", () => {
+
+    /* PAYS */
+    pays.innerHTML = '<option value="">Choisir un pays</option>';
+
+    if (continent.value) {
+        listePays[continent.value].forEach((nomPays) => {
+            const option = document.createElement("option");
+            option.value = nomPays;
+            option.textContent = nomPays;
+            pays.appendChild(option);
+        });
+    }
+
+    /* DEVISE */
+    devise.innerHTML = '<option value="">Choisir une devise</option>';
+
+    if (continent.value) {
+        listeDevises[continent.value].forEach((d) => {
+            const option = document.createElement("option");
+            option.value = d;
+            option.textContent = d;
+            devise.appendChild(option);
+        });
+    }
+
+});
+/* =========================================
+   SÉLECTEUR DATE DE NAISSANCE EN ROUES
+========================================= */
+
+const dateInput = document.getElementById("dateNaissance");
+const datePicker = document.getElementById("datePicker");
+
+const dayWheel = document.getElementById("dayWheel");
+const monthWheel = document.getElementById("monthWheel");
+const yearWheel = document.getElementById("yearWheel");
+
+const cancelDate = document.getElementById("cancelDate");
+const confirmDate = document.getElementById("confirmDate");
+
+const datePickerTitle = document.getElementById("datePickerTitle");
+
+
+/* =========================================
+   TRADUCTIONS DU SÉLECTEUR
+========================================= */
+
+function traduireDatePicker(){
+
+    const t = translations[lang];
+
+    datePickerTitle.textContent = t.datePickerTitle;
+    cancelDate.textContent = t.cancelDate;
+    confirmDate.textContent = t.confirmDate;
+
+}
+
+
+/* =========================================
+   MOIS DANS LA LANGUE DU NAVIGATEUR
+========================================= */
+
+const mois = translations[lang].months;
+
+
+/* =========================================
+   CRÉATION DES ROUES
+========================================= */
+
+function remplirRoues(){
+
+    dayWheel.innerHTML = "";
+    monthWheel.innerHTML = "";
+    yearWheel.innerHTML = "";
+
+
+    /* ESPACE AVANT */
+
+    const spacerDayTop = document.createElement("div");
+    spacerDayTop.className = "wheel-spacer";
+    dayWheel.appendChild(spacerDayTop);
+
+    const spacerMonthTop = document.createElement("div");
+    spacerMonthTop.className = "wheel-spacer";
+    monthWheel.appendChild(spacerMonthTop);
+
+    const spacerYearTop = document.createElement("div");
+    spacerYearTop.className = "wheel-spacer";
+    yearWheel.appendChild(spacerYearTop);
+
+
+    /* =========================================
+       JOURS
+    ========================================= */
+
+    for(let jour = 1; jour <= 31; jour++){
+
+        const item = document.createElement("div");
+
+        item.className = "wheel-item";
+        item.textContent = jour;
+
+        dayWheel.appendChild(item);
+
+    }
+
+
+    /* =========================================
+       MOIS
+    ========================================= */
+
+    mois.forEach((nom,index)=>{
+
+        const item = document.createElement("div");
+
+        item.className = "wheel-item";
+
+        item.textContent = nom;
+
+        item.dataset.month = index + 1;
+
+        monthWheel.appendChild(item);
+
+    });
+
+
+    /* =========================================
+       ANNÉES
+    ========================================= */
+
+    const anneeActuelle = new Date().getFullYear();
+
+    for(let annee = anneeActuelle; annee >= 1900; annee--){
+
+        const item = document.createElement("div");
+
+        item.className = "wheel-item";
+
+        item.textContent = annee;
+
+        yearWheel.appendChild(item);
+
+    }
+
+
+    /* ESPACE APRÈS */
+
+    const spacerDayBottom = document.createElement("div");
+    spacerDayBottom.className = "wheel-spacer";
+    dayWheel.appendChild(spacerDayBottom);
+
+    const spacerMonthBottom = document.createElement("div");
+    spacerMonthBottom.className = "wheel-spacer";
+    monthWheel.appendChild(spacerMonthBottom);
+
+    const spacerYearBottom = document.createElement("div");
+    spacerYearBottom.className = "wheel-spacer";
+    yearWheel.appendChild(spacerYearBottom);
+
+}
+
+
+/* =========================================
+   INITIALISATION
+========================================= */
+
+traduireDatePicker();
+remplirRoues();
+
+
+/* =========================================
+   POSITIONNER UNE ROUE
+========================================= */
+
+function positionnerRoue(wheel,index){
+
+    const hauteurItem = 55;
+
+    wheel.scrollTop = index * hauteurItem;
+
+}
+
+
+/* =========================================
+   AFFICHER LA DATE DU JOUR
+========================================= */
+
+function afficherDateDuJour(){
+
+    const aujourdHui = new Date();
+
+    const jour = aujourdHui.getDate();
+    const moisActuel = aujourdHui.getMonth() + 1;
+    const annee = aujourdHui.getFullYear();
+
+
+    /* JOUR */
+
+    positionnerRoue(
+        dayWheel,
+        jour - 1
+    );
+
+
+    /* MOIS */
+
+    positionnerRoue(
+        monthWheel,
+        moisActuel - 1
+    );
+
+
+    /* ANNÉE */
+
+    const anneeItems =
+        yearWheel.querySelectorAll(".wheel-item");
+
+    let indexAnnee = 0;
+
+    anneeItems.forEach((item,index)=>{
+
+        if(parseInt(item.textContent) === annee){
+
+            indexAnnee = index;
+
+        }
+
+    });
+
+
+    positionnerRoue(
+        yearWheel,
+        indexAnnee
+    );
+
+
+    setTimeout(()=>{
+
+        mettreSelectionEnNoir();
+
+    },100);
+
+}
+
+
+/* =========================================
+   TROUVER LA SÉLECTION
+========================================= */
+
+function trouverSelection(wheel){
+
+    const items =
+        wheel.querySelectorAll(".wheel-item");
+
+    const centre =
+        wheel.getBoundingClientRect().top +
+        wheel.offsetHeight / 2;
+
+    let meilleur = null;
+
+    let distanceMin = Infinity;
+
+
+    items.forEach(item=>{
+
+        const rect =
+            item.getBoundingClientRect();
+
+        const centreItem =
+            rect.top +
+            rect.height / 2;
+
+        const distance =
+            Math.abs(centreItem - centre);
+
+
+        if(distance < distanceMin){
+
+            distanceMin = distance;
+
+            meilleur = item;
+
+        }
+
+    });
+
+
+    return meilleur;
+
+}
+
+
+/* =========================================
+   SÉLECTION EN NOIR
+========================================= */
+
+function mettreSelectionEnNoir(){
+
+    const roues = [
+        dayWheel,
+        monthWheel,
+        yearWheel
+    ];
+
+
+    roues.forEach(wheel=>{
+
+        const items =
+            wheel.querySelectorAll(".wheel-item");
+
+
+        items.forEach(item=>{
+
+            item.classList.remove("selected");
+
+        });
+
+
+        const selection =
+            trouverSelection(wheel);
+
+
+        if(selection){
+
+            selection.classList.add("selected");
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   DÉFILEMENT
+========================================= */
+
+const roues = [
+    dayWheel,
+    monthWheel,
+    yearWheel
+];
+
+
+roues.forEach(wheel=>{
+
+    wheel.addEventListener("scroll",()=>{
+
+        requestAnimationFrame(()=>{
+
+            mettreSelectionEnNoir();
+
+        });
+
+    });
+
+});
+
+
+/* =========================================
+   OUVRIR
+========================================= */
+
+dateInput.addEventListener("click",()=>{
+
+    datePicker.classList.add("active");
+
+    setTimeout(()=>{
+
+        afficherDateDuJour();
+
+    },50);
+
+});
+
+
+/* =========================================
+   ANNULER
+========================================= */
+
+cancelDate.addEventListener("click",()=>{
+
+    datePicker.classList.remove("active");
+
+});
+
+
+/* =========================================
+   DÉFINIR LA DATE
+========================================= */
+
+confirmDate.addEventListener("click",()=>{
+
+    const jourElement =
+        trouverSelection(dayWheel);
+
+    const moisElement =
+        trouverSelection(monthWheel);
+
+    const anneeElement =
+        trouverSelection(yearWheel);
+
+
+    if(
+        !jourElement ||
+        !moisElement ||
+        !anneeElement
+    ){
+
+        return;
+
+    }
+
+
+    const jour =
+        parseInt(jourElement.textContent);
+
+
+    const moisNumero =
+        parseInt(moisElement.dataset.month);
+
+
+    const annee =
+        parseInt(anneeElement.textContent);
+
+
+    /* =========================================
+       VÉRIFIER SI LA DATE EXISTE
+    ========================================= */
+
+    const dateChoisie =
+        new Date(
+            annee,
+            moisNumero - 1,
+            jour
+        );
+
+
+    if(
+        dateChoisie.getFullYear() !== annee ||
+        dateChoisie.getMonth() !== moisNumero - 1 ||
+        dateChoisie.getDate() !== jour
+    ){
+
+        alert(translations[lang].invalidDate);
+
+        return;
+
+    }
+
+
+    /* =========================================
+       INTERDIRE UNE DATE FUTURE
+    ========================================= */
+
+    const aujourdHui = new Date();
+
+    aujourdHui.setHours(0,0,0,0);
+
+
+    if(dateChoisie >= aujourdHui){
+
+        alert(translations[lang].futureDate);
+
+        return;
+
+    }
+
+
+    /* =========================================
+       FORMAT AFFICHÉ
+       JJ/MM/AAAA
+    ========================================= */
+
+    const jourTexte =
+        String(jour).padStart(2,"0");
+
+    const moisTexte =
+        String(moisNumero).padStart(2,"0");
+
+
+    dateInput.value =
+        `${jourTexte}/${moisTexte}/${annee}`;
+
+
+    /* =========================================
+       FORMAT FIREBASE
+       AAAA-MM-JJ
+    ========================================= */
+
+    dateInput.dataset.value =
+        `${annee}-${moisTexte}-${jourTexte}`;
+
+
+    /* FERMER */
+
+    datePicker.classList.remove("active");
+
+});
+
+</script>
+
+</body>
+</html>

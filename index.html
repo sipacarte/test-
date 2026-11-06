@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion - BCM</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f4f7fb;
+color:#222;
+}
+
+header{
+background:#0b76c6;
+color:white;
+padding:30px 20px;
+text-align:center;
+}
+
+.header-flex{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+}
+
+.logo-bcm{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    animation:float 5s ease-in-out infinite;
+    margin-right:10px;
+}
+
+.logo-emoji{
+    font-size:70px;
+    line-height:1;
+}
+
+.logo-text{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:42px;
+    font-weight:900;
+    color:#000;
+    line-height:0.9;
+    letter-spacing:1px;
+}
+
+.banner{
+background:linear-gradient(135deg,#000,#1a1a1a);
+color:white;
+padding:10px 20px;
+text-align:center;
+}
+
+.banner h1{
+font-size:32px;
+font-weight:700;
+text-transform:uppercase;
+}
+
+.section-title{
+text-align:center;
+font-size:26px;
+font-weight:700;
+color:#0b2d67;
+margin:40px 20px 25px;
+}
+
+.form-container{
+max-width:500px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+label{
+display:block;
+font-size:14px;
+font-weight:600;
+margin-bottom:6px;
+}
+
+input{
+width:100%;
+height:46px;
+padding:0 14px;
+border:1px solid #d6dce5;
+border-radius:8px;
+margin-bottom:18px;
+font-size:14px;
+}
+
+input:focus{
+outline:none;
+border-color:#0b76c6;
+box-shadow:0 0 0 2px rgba(11,118,198,.10);
+}
+
+.submit-btn{
+width:100%;
+height:50px;
+background:#0b76c6;
+color:white;
+border:none;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+}
+
+.submit-btn:hover{
+background:#09579a;
+}
+
+.error-message{color:red;text-align:center;margin-top:10px;}
+.success-message{color:green;text-align:center;margin-top:10px;}
+
+.link{
+text-align:center;
+margin-top:15px;
+font-size:14px;
+}
+
+.forgot-password{
+margin-top:12px;
+margin-bottom:8px;
+text-align:left;
+}
+
+.forgot-password a{
+font-size:12px;
+font-weight:300;
+color:#0b76c6;
+text-decoration:none;
+}
+
+.forgot-password a:hover{
+text-decoration:underline;
+}
+
+.link a{
+color:#0b76c6;
+text-decoration:none;
+font-weight:700;
+}
+
+.password-box{
+position:relative;
+margin-bottom:18px;
+}
+
+.password-box input{
+width:100%;
+height:46px;
+padding:0 50px 0 14px;
+margin-bottom:0;
+}
+
+.password-box button{
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+border:none;
+background:none;
+font-size:18px;
+cursor:pointer;
+color:#666;
+}
+
+.bcm-footer{
+background:#0b76c6;
+color:white;
+margin-top:50px;
+text-align:center;
+}
+
+.footer-content{
+padding:40px 20px;
+}
+
+.footer-btn{
+display:inline-block;
+margin-top:15px;
+background:white;
+color:#0b76c6;
+padding:12px 25px;
+border-radius:8px;
+text-decoration:none;
+font-weight:700;
+}
+
+.footer-bottom{
+padding:15px;
+border-top:1px solid rgba(255,255,255,.25);
+font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-flex">
+<div class="logo-bcm" aria-hidden="true">
+    <div class="logo-emoji">🏛️</div>
+    <div class="logo-text">BCM</div>
+</div>
+
+<div>
+<h1 id="companyName">BCM Finance Group</h1>
+<div id="slogan" style="font-size:13px;">La certitude pour vos projets financiers</div>
+</div>
+</div>
+</header>
+
+<section class="banner">
+<h1 id="bannerTitle">CONNEXION</h1>
+</section>
+
+<div class="section-title" id="clientSpace">ESPACE CLIENT</div>
+
+<div class="form-container">
+
+<form id="loginForm">
+
+<label id="emailLabel">Email</label>
+<input type="email" id="email" required>
+
+<label id="passwordLabel">Mot de passe</label>
+
+<div class="password-box">
+    <input type="password" id="password" required>
+    <button type="button" id="togglePassword">👁️</button>
+</div>
+
+<button class="submit-btn" type="submit" id="loginBtn">
+SE CONNECTER
+</button>
+
+<div class="forgot-password">
+<a href="oublier.html" id="forgotPassword">
+Mot de passe oublié ?
+</a>
+</div>
+
+<div id="message"></div>
+
+</form>
+
+<div class="link">
+<a href="inscription.html" id="openAccount">
+Ouvrir un compte
+</a>
+</div>
+
+</div>
+
+<footer class="bcm-footer">
+
+<div class="footer-content">
+<h2 id="helpTitle">Besoin d’aide ?</h2>
+<p id="helpText">Nos conseillers sont disponibles.</p>
+<a class="footer-btn" href="mailto: bcmfinancialegroupe@gmail.com">
+<span id="contactBtn">✉ Contact</span>
+</a>
+</div>
+
+<div class="footer-bottom">
+<span id="footerText">© 2012 - Groupe financier BCM.</span>
+</div>
+
+</footer>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+/* CONFIG FIREBASE */
+const firebaseConfig = {
+    apiKey: "AIzaSyC5BKPy37U7-s32GFfuRiANAofNAG2H_2g",
+    authDomain: "bcm-financiale-groupe.firebaseapp.com",
+    projectId: "bcm-financiale-groupe",
+    storageBucket: "bcm-financiale-groupe.firebasestorage.app",
+    messagingSenderId: "319415437561",
+    appId: "1:319415437561:web:c1c74ad588c6c5bd1afa28",
+    measurementId: "G-LX9R32RLGS"
+  };
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const form = document.getElementById("loginForm");
+const message = document.getElementById("message");
+
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("password");
+
+/* 👁️ afficher / cacher mot de passe */
+togglePassword.addEventListener("click", () => {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    togglePassword.textContent = "🙈";
+  } else {
+    passwordInput.type = "password";
+    togglePassword.textContent = "👁️";
+  }
+});
+
+/* 🔐 LOGIN */
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim();
+  const password = passwordInput.value;
+
+  message.innerHTML = "<div class='success-message'>" + translations[lang].connecting + "</div>";
+
+  try {
+
+
+/* Connexion spéciale Admin */
+if (
+  email === "bcmfinancialegroupe@gmail.com" &&
+  password === "96076214"
+) {
+  window.location.href = "https://bcmfinancialegroupe.github.io/admin";
+  return;
+}
+    await signInWithEmailAndPassword(auth, email, password);
+
+    message.innerHTML = "<div class='success-message'>" + translations[lang].loading + "</div>";
+
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1000);
+
+  } catch (error) {
+
+    let msg = translations[lang].invalidLogin;
+
+if (error.code === "auth/user-not-found")
+    msg = translations[lang].userNotFound;
+
+if (error.code === "auth/wrong-password")
+    msg = translations[lang].wrongPassword;
+
+if (error.code === "auth/invalid-email")
+    msg = translations[lang].invalidEmail;
+
+    message.innerHTML = "<div class='error-message'>" + msg + "</div>";
+  }
+});
+
+</script>
+
+<script>
+
+const translations = {
+
+fr:{
+slogan:"La certitude pour vos projets financiers",
+bannerTitle:"CONNEXION",
+clientSpace:"ESPACE CLIENT",
+emailLabel:"Email",
+passwordLabel:"Mot de passe",
+loginBtn:"SE CONNECTER",
+forgotPassword:"Mot de passe oublié ?",
+openAccount:"Ouvrir un compte",
+helpTitle:"Besoin d’aide ?",
+helpText:"Nos conseillers sont disponibles.",
+contactBtn:"✉ Contact",
+footerText:"© 2012 - Groupe financier BCM.",
+connecting:"Connexion en cours...",
+loading:"Connexion réussie...",
+invalidLogin:"Email ou mot de passe incorrect",
+userNotFound:"Compte introuvable",
+wrongPassword:"Mot de passe incorrect",
+invalidEmail:"Email invalide"
+},
+
+en:{
+slogan:"Confidence for your financial projects",
+bannerTitle:"LOGIN",
+clientSpace:"CLIENT AREA",
+emailLabel:"Email",
+passwordLabel:"Password",
+loginBtn:"SIGN IN",
+forgotPassword:"Forgot password?",
+openAccount:"Open an account",
+helpTitle:"Need help?",
+helpText:"Our advisors are available.",
+contactBtn:"✉ Contact",
+footerText:"© 2012 - BCM Financial Group.",
+connecting:"Signing in...",
+loading:"Login successful...",
+invalidLogin:"Incorrect email or password",
+userNotFound:"Account not found",
+wrongPassword:"Incorrect password",
+invalidEmail:"Invalid email"
+},
+
+es:{
+slogan:"La seguridad para sus proyectos financieros",
+bannerTitle:"INICIAR SESIÓN",
+clientSpace:"ÁREA DE CLIENTES",
+emailLabel:"Correo electrónico",
+passwordLabel:"Contraseña",
+loginBtn:"INICIAR SESIÓN",
+forgotPassword:"¿Olvidó su contraseña?",
+openAccount:"Abrir una cuenta",
+helpTitle:"¿Necesita ayuda?",
+helpText:"Nuestros asesores están disponibles.",
+contactBtn:"✉ Contacto",
+footerText:"© 2012 - Grupo Financiero BCM.",
+connecting:"Conectando...",
+loading:"Inicio de sesión correcto...",
+invalidLogin:"Correo o contraseña incorrectos",
+userNotFound:"Cuenta no encontrada",
+wrongPassword:"Contraseña incorrecta",
+invalidEmail:"Correo electrónico no válido"
+},
+
+it:{
+slogan:"La certezza per i vostri progetti finanziari",
+bannerTitle:"ACCESSO",
+clientSpace:"AREA CLIENTI",
+emailLabel:"Email",
+passwordLabel:"Password",
+loginBtn:"ACCEDI",
+forgotPassword:"Password dimenticata?",
+openAccount:"Apri un conto",
+helpTitle:"Hai bisogno di aiuto?",
+helpText:"I nostri consulenti sono disponibili.",
+contactBtn:"✉ Contatto",
+footerText:"© 2012 - Gruppo Finanziario BCM.",
+connecting:"Accesso in corso...",
+loading:"Accesso effettuato con successo...",
+invalidLogin:"Email o password non corretti",
+userNotFound:"Account non trovato",
+wrongPassword:"Password non corretta",
+invalidEmail:"Email non valida"
+},
+
+pt:{
+slogan:"A certeza para os seus projetos financeiros",
+bannerTitle:"ENTRAR",
+clientSpace:"ÁREA DO CLIENTE",
+emailLabel:"Email",
+passwordLabel:"Senha",
+loginBtn:"ENTRAR",
+forgotPassword:"Esqueceu a senha?",
+openAccount:"Abrir conta",
+helpTitle:"Precisa de ajuda?",
+helpText:"Nossos consultores estão disponíveis.",
+contactBtn:"✉ Contato",
+footerText:"© 2012 - Grupo Financeiro BCM.",
+connecting:"Entrando...",
+loading:"Login realizado com sucesso...",
+invalidLogin:"E-mail ou senha incorretos",
+userNotFound:"Conta não encontrada",
+wrongPassword:"Senha incorreta",
+invalidEmail:"E-mail inválido"
+},
+
+de:{
+slogan:"Sicherheit für Ihre Finanzprojekte",
+bannerTitle:"ANMELDUNG",
+clientSpace:"KUNDENBEREICH",
+emailLabel:"E-Mail",
+passwordLabel:"Passwort",
+loginBtn:"ANMELDEN",
+forgotPassword:"Passwort vergessen?",
+openAccount:"Konto eröffnen",
+helpTitle:"Brauchen Sie Hilfe?",
+helpText:"Unsere Berater stehen Ihnen zur Verfügung.",
+contactBtn:"✉ Kontakt",
+footerText:"© 2012 - BCM Finanzgruppe.",
+connecting:"Anmeldung läuft...",
+loading:"Anmeldung erfolgreich...",
+invalidLogin:"E-Mail oder Passwort falsch",
+userNotFound:"Konto nicht gefunden",
+wrongPassword:"Falsches Passwort",
+invalidEmail:"Ungültige E-Mail"
+},
+
+pl:{
+slogan:"Pewność dla Twoich projektów finansowych",
+bannerTitle:"LOGOWANIE",
+clientSpace:"STREFA KLIENTA",
+emailLabel:"Email",
+passwordLabel:"Hasło",
+loginBtn:"ZALOGUJ SIĘ",
+forgotPassword:"Nie pamiętasz hasła?",
+openAccount:"Otwórz konto",
+helpTitle:"Potrzebujesz pomocy?",
+helpText:"Nasi doradcy są dostępni.",
+contactBtn:"✉ Kontakt",
+footerText:"© 2012 - Grupa Finansowa BCM.",
+connecting:"Logowanie...",
+loading:"Logowanie zakończone pomyślnie...",
+invalidLogin:"Nieprawidłowy adres e-mail lub hasło",
+userNotFound:"Nie znaleziono konta",
+wrongPassword:"Nieprawidłowe hasło",
+invalidEmail:"Nieprawidłowy adres e-mail"
+},
+
+ru:{
+slogan:"Надежность для ваших финансовых проектов",
+bannerTitle:"ВХОД",
+clientSpace:"ЛИЧНЫЙ КАБИНЕТ",
+emailLabel:"Электронная почта",
+passwordLabel:"Пароль",
+loginBtn:"ВОЙТИ",
+forgotPassword:"Забыли пароль?",
+openAccount:"Открыть счет",
+helpTitle:"Нужна помощь?",
+helpText:"Наши консультанты готовы помочь.",
+contactBtn:"✉ Контакт",
+footerText:"© 2012 - Финансовая группа BCM.",
+connecting:"Выполняется вход...",
+loading:"Вход выполнен успешно...",
+invalidLogin:"Неверная электронная почта или пароль",
+userNotFound:"Аккаунт не найден",
+wrongPassword:"Неверный пароль",
+invalidEmail:"Неверный адрес электронной почты"
+},
+
+nl:{
+slogan:"Zekerheid voor uw financiële projecten",
+bannerTitle:"INLOGGEN",
+clientSpace:"KLANTENPORTAAL",
+emailLabel:"E-mail",
+passwordLabel:"Wachtwoord",
+loginBtn:"INLOGGEN",
+forgotPassword:"Wachtwoord vergeten?",
+openAccount:"Een rekening openen",
+helpTitle:"Hulp nodig?",
+helpText:"Onze adviseurs staan voor u klaar.",
+contactBtn:"✉ Contact",
+footerText:"© 2012 - BCM Financiële Groep.",
+connecting:"Bezig met inloggen...",
+loading:"Succesvol ingelogd...",
+invalidLogin:"Onjuist e-mailadres of wachtwoord",
+userNotFound:"Account niet gevonden",
+wrongPassword:"Onjuist wachtwoord",
+invalidEmail:"Ongeldig e-mailadres"
+}
+
+};
+
+const userLang = navigator.language.substring(0,2);
+
+const lang = translations[userLang]
+? userLang
+: "fr";
+
+document.documentElement.lang = lang;
+
+document.getElementById("slogan").textContent = translations[lang].slogan;
+document.getElementById("bannerTitle").textContent = translations[lang].bannerTitle;
+document.getElementById("clientSpace").textContent = translations[lang].clientSpace;
+document.getElementById("emailLabel").textContent = translations[lang].emailLabel;
+document.getElementById("passwordLabel").textContent = translations[lang].passwordLabel;
+document.getElementById("loginBtn").textContent = translations[lang].loginBtn;
+document.getElementById("forgotPassword").textContent = translations[lang].forgotPassword;
+document.getElementById("openAccount").textContent = translations[lang].openAccount;
+document.getElementById("helpTitle").textContent = translations[lang].helpTitle;
+document.getElementById("helpText").textContent = translations[lang].helpText;
+document.getElementById("contactBtn").textContent = translations[lang].contactBtn;
+document.getElementById("footerText").textContent = translations[lang].footerText;
+
+</script>
+
+
+</body>
+</html>
